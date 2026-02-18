@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 
 @Preview(showBackground = true)
 @Composable
-fun ForthScreen() {
+fun SixthScreen() {
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -42,7 +42,6 @@ fun ForthScreen() {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-
 
             Box(
                 modifier = Modifier
@@ -59,7 +58,6 @@ fun ForthScreen() {
                     horizontalAlignment = Alignment.Start
                 ) {
 
-
                     Row(
                         modifier = Modifier
                             .clip(RoundedCornerShape(12.dp))
@@ -67,7 +65,6 @@ fun ForthScreen() {
                             .padding(horizontal = 12.dp, vertical = 10.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-
 
                         Box(
                             modifier = Modifier
@@ -88,7 +85,6 @@ fun ForthScreen() {
                         fontSize = 44.sp
                     )
                 }
-
 
                 Icon(
                     painter = painterResource(R.drawable.frame24),
@@ -125,7 +121,7 @@ fun ForthScreen() {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
 
-
+                        // Replace with Flag
                         Box(
                             modifier = Modifier
                                 .size(20.dp)
@@ -147,16 +143,16 @@ fun ForthScreen() {
                 }
 
 
-                    Icon(
-                        painter = painterResource(R.drawable.frame_28),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .clip(RoundedCornerShape(18.dp))
-                            .padding(18.dp)
-                            , tint = Color.Unspecified
-                    )
-                }
+                Icon(
+                    painter = painterResource(R.drawable.frame_22),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .clip(RoundedCornerShape(18.dp))
+                        .padding(18.dp)
+                    , tint = Color.Unspecified
+                )
+            }
 
         }
     }

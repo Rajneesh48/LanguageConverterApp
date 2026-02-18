@@ -1,5 +1,6 @@
 package com.example.languageconverterapp
 
+import SeventhScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             LanguageConverterAppTheme {
                setContent {
-                   SecondScreen()
+                   SeventhScreen()
                }
                 }
             }

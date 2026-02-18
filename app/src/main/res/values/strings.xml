@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LanguageConverterApp</string>
+    <string name="english" >English</string>
+    <string name="spanish">Spanish</string>
+    <string name="urdu">Urdu</string>
+    <string name="hindi">Hindi</string>
+    <string name="select_a_language">Select a language</string>
+    <string name="pick_language_to_continue">pick_language_to_continue</string>
 </resources>
