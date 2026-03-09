@@ -1,5 +1,6 @@
 package com.example.languageconverterapp
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -67,13 +68,9 @@ fun EigthScreen() {
                         .padding(horizontal = 12.dp, vertical = 10.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-
-                    Box(
-                        modifier = Modifier
-                            .size(20.dp)
-                            .background(Color.Green, CircleShape)
-                    )
-
+Image(painter = painterResource(R.drawable.india_flag),
+    contentDescription = "",
+    Modifier.size(15.dp))
                     Spacer(Modifier.width(6.dp))
 
                     Text("Hindi", color = Color.Black)
@@ -100,7 +97,7 @@ fun EigthScreen() {
             )
         }
 
-        // ================= BOTTOM SECTION =================
+
         Box(
             modifier = Modifier
                 .weight(1f)
