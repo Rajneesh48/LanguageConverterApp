@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -29,26 +27,31 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.languageconverterapp.MenuItem
 import com.example.languageconverterapp.R
+import com.example.languageconverterapp.ui.theme.PurpleGrey40
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 fun SeventhScreen() {
 
-    var showLanguagesTop by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
     var showLanguagesBottom by remember { mutableStateOf(false) }
     var selectedLanguageTop by remember { mutableStateOf("") }
+
     var selectedLanguageBottom by remember { mutableStateOf("") }
-    val languages = listOf("English", "Spanish", "Urdu", "Hindi")
+    val languages = listOf(
+    MenuItem(R.drawable.india_flag,"India")
+    )
+
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -63,37 +66,74 @@ fun SeventhScreen() {
         ) {
 
             Column {
+                ExposedDropdownMenuBox(
+                    expanded = expanded,
+                    onExpandedChange = {
+                        expanded = !expanded
+                    }
+                ) {
 
-                TextField(
-                    value = selectedLanguageTop,
-                    onValueChange = {},
-                    readOnly = true,
-                    placeholder = { Text("Select a language") },
+                    TextField(
+                        value = selectedLanguageTop,
+                        onValueChange = {},
+                        readOnly = true,
+                        placeholder = { Text("Select a name") },
+                        trailingIcon = {
+                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                        },
 
-                    trailingIcon = {
-                        Icon(
-                            imageVector = Icons.Default.ArrowDropDown,
-                            contentDescription = null,
-                            modifier = Modifier.clickable{
-                                showLanguagesTop = !showLanguagesTop
-                            }
+                        modifier = Modifier
+                            .menuAnchor(MenuAnchorType.PrimaryEditable)
+                            .fillMaxWidth()
+                            , shape = RoundedCornerShape(12.dp)
+                        , colors = TextFieldDefaults.colors(
+                            unfocusedContainerColor = Color.White,
+                            focusedContainerColor = Color.White,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            focusedTextColor = Color.Black,
+                            unfocusedTextColor = Color.Black,
+                            cursorColor = Color.Black,
+                            disabledTextColor = Color.Black,
                         )
-                    },
-
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp),
-
-                    colors = TextFieldDefaults.colors(
-                        unfocusedContainerColor = Color.White,
-                        focusedContainerColor = Color.White,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent
                     )
-                )
+
+                    ExposedDropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false }
+                    ) {
+
+                        languages.forEach { language ->
+
+                            DropdownMenuItem(
+                                text = {
+
+                                    Row {
+
+                                        Icon(
+                                            painter = painterResource(language.flag),
+                                            contentDescription = "",
+                                            tint = Color.Unspecified,
+                                            modifier = Modifier.size(20.dp)
+                                        )
+                                        Spacer(Modifier.size(8.dp))
+
+                                        Text(language.name)
+                                    }
+
+                                },
+
+                                onClick = {
+                                    selectedLanguageTop = language.name
+                                    expanded = false
+                                }
+                            )
+                        }
+                    }
+                }
                 Spacer(modifier = Modifier.height(16.dp))
 
-                if (showLanguagesTop){
+
 
                 Row(modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -101,13 +141,13 @@ fun SeventhScreen() {
                             Surface(shape = RoundedCornerShape(20.dp),
                                 color = Color(0xFF2F2F2F),
                                 modifier = Modifier.clickable{
-                                    selectedLanguageTop= language
-                                    showLanguagesTop = false
+                                    selectedLanguageTop = language.name
+                                    expanded = false
                                 }
                                 ){
                                 Text(
-                                   text = language,
-                                    color = Color.White,
+                                   text = language.name,
+                                    color = Color.Black,
                                     fontSize = 12.sp,
                                     modifier = Modifier.padding(
                                         horizontal = 12.dp,
@@ -116,12 +156,12 @@ fun SeventhScreen() {
                                 )
 
                             }
-                        }}}
+                        }}
 
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "pick_language_to_continue",
-                    color = Color.Gray,
+                    color = PurpleGrey40,
                     fontSize = 12.sp
                 )
             }
@@ -142,16 +182,15 @@ fun SeventhScreen() {
                     value = selectedLanguageBottom,
                     onValueChange = {},
                     readOnly = true,
-                    placeholder = { Text("Select a language") },
+                    placeholder = { Text("Select a name") },
 
                     trailingIcon = {
-                        Icon(
-                            imageVector = Icons.Default.ArrowDropDown,
-                            contentDescription = null,
+                       ExposedDropdownMenuDefaults.TrailingIcon(expanded = showLanguagesBottom,
+
                             modifier = Modifier.clickable{
                                 showLanguagesBottom = !showLanguagesBottom
                             }
-                        )
+                       )
                     },
 
                     modifier = Modifier
@@ -176,12 +215,12 @@ fun SeventhScreen() {
                             Surface(shape = RoundedCornerShape(20.dp),
                                 color = Color(0xFF2F2F2F),
                                 modifier = Modifier.clickable{
-                                    selectedLanguageBottom = language
+                                    selectedLanguageBottom = language.name
                                     showLanguagesBottom = false
                                 }
                             ){
                                 Text(
-                                    text = language,
+                                    text = language.name,
                                     color = Color.White,
                                     fontSize = 12.sp,
                                     modifier = Modifier.padding(
