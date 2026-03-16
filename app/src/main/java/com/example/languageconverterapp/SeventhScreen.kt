@@ -1,16 +1,20 @@
 
+import android.R.attr.maxWidth
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -49,14 +53,17 @@ fun SeventhScreen() {
 
     var selectedLanguageBottom by remember { mutableStateOf("") }
     val languages = listOf(
-    MenuItem(R.drawable.india_flag,"India")
+    MenuItem(R.drawable.india_flag,"India"),
+    MenuItem(R.drawable.france,"France"),
+    MenuItem(R.drawable.japan,"Japan"),
+    MenuItem(R.drawable.uk,"United Kingdom")
     )
 
 
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-// ================= TOP SECTION =================
+
         Box(
             modifier = Modifier
                 .weight(1f)
@@ -98,9 +105,12 @@ fun SeventhScreen() {
                         )
                     )
 
+
                     ExposedDropdownMenu(
                         expanded = expanded,
-                        onDismissRequest = { expanded = false }
+                        onDismissRequest = { expanded = false },
+                        modifier = Modifier.padding(20.dp)
+                            .background(Color.White, shape = RoundedCornerShape(4.dp))
                     ) {
 
                         languages.forEach { language ->
@@ -147,7 +157,7 @@ fun SeventhScreen() {
                                 ){
                                 Text(
                                    text = language.name,
-                                    color = Color.Black,
+                                    color = Color.White,
                                     fontSize = 12.sp,
                                     modifier = Modifier.padding(
                                         horizontal = 12.dp,
