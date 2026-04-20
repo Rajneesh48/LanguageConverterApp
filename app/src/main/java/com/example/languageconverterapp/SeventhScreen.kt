@@ -143,6 +143,8 @@ fun SeventhScreen() {
                 }
                 Spacer(modifier = Modifier.height(16.dp))
 
+                
+
 
 
                 Row(modifier = Modifier.fillMaxWidth(),
